@@ -1,0 +1,4 @@
+Hello, Wassup
+How is your day going
+text
+Buffered Write

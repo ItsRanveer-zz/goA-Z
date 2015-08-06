@@ -21,7 +21,7 @@ func main() {
 	//Channels are the pipes which lets goroutine to talk to each other.
 	//By default channels are unbuffered. Channels will only accept if there is a corresponding retrieve and also vice-versa.
 	channel := make(chan string)                   //Here we are making a channel of type string which is a unbuffered channel
-	go func() { channel <- "Passed to Channel" }() //Sedning value to channel inside a goroutine
+	go func() { channel <- "Passed to Channel" }() //Sending value to channel inside a goroutine
 	fmt.Println(<-channel)                         //Reveiving value form channel and print it
 
 	//Buffered channels. To accept more than a single value and store them in buffer to retriev them later, we use buffered channels

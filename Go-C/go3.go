@@ -61,15 +61,17 @@ func main() {
 	//var mapAge map[string]int .  //It can be defined like this but will be a nill map with length 0 and value 0 for any key.
 	//Also if we initialize it will give runtime panic cause there is no referenced map to which it is referencing.
 	mapAge := make(map[string]int) //Define like this. It will allocates and initialize a hash map data structure and returns a map value that points to it.
-	mapAge["Hari"] = 42
+	mapAge["Hari"] = 42            // Adding some key value pairs to our map
 	mapAge["Mahesh"] = 66
 	mapAge["Babu"] = 34
-	fmt.Println("Hari's Age - ", mapAge["Hari"])                  // Finding value of a key in map
-	fmt.Println("Length of Map - ", len(mapAge))                  // Length of map or number of key value pairs in map
-	fmt.Println(reflect.TypeOf(mapAge), "-", mapAge)              // Printing type of map and full map
-	delete(mapAge, "Mahesh")                                      // For deleting a value from a map. (Map Name, key)
-	fmt.Println(mapAge)                                           // Map after deleting a value
-	mapAge2 := map[string]int{"Sam": 42, "Scot": 56, "Larry": 41} // Can also be defined and initialized in same line
+	fmt.Println("Hari's Age - ", mapAge["Hari"])                        // Finding value of a key in map
+	fmt.Println("Length of Map - ", len(mapAge))                        // Length of map or number of key value pairs in map
+	fmt.Println(reflect.TypeOf(mapAge), "-", mapAge)                    // Printing type of map and full map
+	value, present := mapAge["Hari"]                                    // Also when we look up in map with a key it will return two values, the value at that key and bool(present or not)
+	fmt.Println("Value at Key 'Hari': ", value, ", Present: ", present) // If key doesn't exists than present will be false and value will be default of value datatype
+	delete(mapAge, "Mahesh")                                            // For deleting a value from a map. (Map Name, key)
+	fmt.Println(mapAge)                                                 // Map after deleting a value
+	mapAge2 := map[string]int{"Sam": 42, "Scot": 56, "Larry": 41}       // Can also be defined and initialized in same line
 	fmt.Println(mapAge2)
 	mapAge3 := mapAge //Creating one map from another
 	fmt.Println(mapAge3)
@@ -77,4 +79,15 @@ func main() {
 	for key, value := range mapAge3 {
 		fmt.Printf("%s - %d\n", key, value)
 	}
+
+	//Creating map from a your own concrete type
+	typeMap := MyMap{1: "One", 2: "Two"} //Initializing map
+	typeMap[3] = "Three"
+	fmt.Println(typeMap)
+	fmt.Println(typeMap[1])
+	fmt.Println(typeMap[2])
+	fmt.Println(typeMap[3])
 }
+
+//Defining own concrete type of map
+type MyMap map[int]string

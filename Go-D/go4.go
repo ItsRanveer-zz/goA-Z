@@ -3,9 +3,7 @@
 package main
 
 //Go Functions and Closures and Recursive Function
-import (
-	"fmt"
-)
+import "fmt"
 
 //Defining main function (There can and should be only one main function otherwise error - "main redeclared" or "undefined main")
 func main() {
@@ -25,6 +23,12 @@ func main() {
 
 	//Third Example - Variadic functions
 	fmt.Println(addMultiple(1, 5, 8, 9, 8)) //If you want to send the values of a slice as a parameter you can send it like this "sliceName..."
+
+	//Fourth Example - First Class Function (Functions are first class objects in Go)
+	//We can store function in fields of a struct, pass them as arguments to other functions and use them as return values to other functions
+	ownInstance := OwnType{func(first string) { fmt.Println("Hello,", first) }}                         //Creating an instance of struct
+	returnedFunction := sayHello(ownInstance.newfunction, "By First Class Function Passed as Argument") //Calling a function by passing another function as argument, this function also returns new function
+	returnedFunction("By First Class Function Got as returned value")                                   //Calling the function which was returned
 
 	//Closure (or Anonymous Function). Used to define function inside function or assign function to a variable. Lexical Scoping.
 	//First Example
@@ -77,6 +81,19 @@ func addMultiple(numbers ...int) int {
 		finalValue += value
 	}
 	return finalValue
+}
+
+//Defining own types(struct) which contains a field which is a funciton.
+type OwnType struct {
+	newfunction func(string) //Function as a field of struct
+}
+
+//Function taking other function as argument and returning new function.
+func sayHello(firstClass func(string), helloString string) func(string) {
+	firstClass(helloString)           //Calling that function which came as an argument
+	return func(firstClass2 string) { //Returning a new function
+		fmt.Println("Hello,", firstClass2)
+	}
 }
 
 //This functin is returning a function

@@ -1,5 +1,4 @@
 // go24.go
-//Maintaining States
 
 package main
 

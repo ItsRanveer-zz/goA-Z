@@ -47,7 +47,7 @@ Its includes comments in the source files.
 
 * Go-U - Spawning, Exec'ing Processes
 
-* Go-V - Goroutines - Channels, Buffered channels, Channel Synchronization, Channel Directions, Select and Non-Blocking Default, Timeout, Closing a Channel, Ranging over Channels, Rate Limiting
+* Go-V - Goroutines - Channels, Buffered channels, Channel Synchronization, Channel Directions, Select and Non-Blocking Default, Timeout, Closing a Channel, Ranging over Channels, Rate Limiting.
 
 * Go-W - Goroutines - Timers, Tickers
 
